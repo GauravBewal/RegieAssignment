@@ -1,0 +1,44 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# Compiled output
+dist/
+
+# Playwright artifacts
+test-results/
+playwright-report/
+.cache/
+
+# Environment variables
+.env
+.env.*
+!/.env.example
+
+# Logs
+logs/
+*.log
+
+# Editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+
+# macOS
+.DS_Store
+
+# Custom reports (if your reporter creates other files)
+reports/*
+!reports/index.html # Keep the generated HTML report
+
+# Ignore temporary files
+tmp/
+temp/
+*~
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/

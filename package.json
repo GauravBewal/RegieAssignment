@@ -1,0 +1,29 @@
+{
+  "name": "playwright-typescript-framework",
+  "version": "1.0.0",
+  "description": "Playwright TypeScript Testing Framework",
+  "main": "index.js",
+  "scripts": {
+    "test:ui": "playwright test src/tests/ui --reporter=list,./utils/reporter.ts",
+    "test:api": "playwright test src/tests/api --config=api.config.ts --reporter=list,./utils/reporter.ts",
+    "test:all": "playwright test --reporter=list,./utils/reporter.ts",
+    "test:smoke": "playwright test --grep @smoke --reporter=list,./utils/reporter.ts",
+    "test:sanity": "playwright test --grep @sanity --reporter=list,./utils/reporter.ts",
+    "report:open": "open reports/index.html",
+    "codegen": "playwright codegen"
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "testing",
+    "automation"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.5.5",
+    "dotenv": "^16.5.0",
+    "typescript": "^5.4.0"
+  }
+}
