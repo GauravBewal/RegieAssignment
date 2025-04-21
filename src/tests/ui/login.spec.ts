@@ -2,7 +2,7 @@ import { test, expect } from '@utils/test-base'; // Should use the @utils alias
 
 test.describe('Login Functionality', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/v1/index.html");
+    await page.goto('/v1/index.html');
   });
   test.afterEach(async ({ page }) => {
     await page.close()
