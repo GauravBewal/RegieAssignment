@@ -18,6 +18,7 @@ export class LoginPage {
   }
 
   async isLoggedOut(): Promise<boolean> {
+    await this.page.waitForTimeout(1000);
     return await this.page.isVisible(this.loginButton, { timeout: 20000 })
   }
 }

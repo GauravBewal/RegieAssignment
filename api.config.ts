@@ -2,12 +2,8 @@ import {devices, defineConfig} from '@playwright/test';
 import * as path from 'path';
 import { config as dotenvConfig } from 'dotenv';
 
-dotenvConfig({ path: path.resolve(__dirname, `.env.${process.env.NODE_ENV || 'default'}`) });
+dotenvConfig({ path: path.resolve(__dirname+'/config', `.env.${process.env.NODE_ENV || 'default'}`) });
 
-console.log(path.resolve(__dirname, `.env.${process.env.NODE_ENV || 'default'}`));
-console.log(process.env);
-
-const apiBaseURL = process.env.apiBaseURL || 'https://reqres.in/api';
 
 export default defineConfig({
   testDir: './src/tests',
@@ -19,20 +15,20 @@ export default defineConfig({
 
   // 'use' is the shared section for all the projects 
   use: {
-    baseURL: apiBaseURL,
+    baseURL: process.env.apiBaseURL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
   },
-  projects: [
-    {
-        name: 'api',
-        testMatch: 'src/tests/api/*.spec.ts',
-        use: {
-        //   request: {
-        //     // Default API request options (e.g., headers, authentication)
-        //   },
-        },
-      },
-  ]
+  // projects: [
+  //   {
+  //       name: 'api',
+  //       testMatch: 'src/tests/api/*.spec.ts',
+  //       use: {
+  //       //   request: {
+  //       //     // Default API request options (e.g., headers, authentication)
+  //       //   },
+  //       },
+  //     },
+  // ]
 });

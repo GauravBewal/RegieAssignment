@@ -27,8 +27,10 @@ npm run test:smoke
 Run sanity tests (tests tagged with @sanity):
 npm run test:sanity
 
-To See The Report:
+To See The Report and Traces:
 npm run report:open 
+
+npx playwright show-trace test-results/<filename>.zip
 
 
 For running on specific env - 
