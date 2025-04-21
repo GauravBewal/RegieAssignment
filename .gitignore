@@ -29,9 +29,9 @@ logs/
 # macOS
 .DS_Store
 
-# Custom reports (if your reporter creates other files)
-reports/*
-!reports/index.html # Keep the generated HTML report
+# # Custom reports (if your reporter creates other files)
+# reports/*
+# !reports/index.html # Keep the generated HTML report
 
 # Ignore temporary files
 tmp/
