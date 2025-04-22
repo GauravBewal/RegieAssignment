@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+import {logger} from '@utils/logger';
 
 export class LoginPage {
   readonly usernameInput = "//input[@id='user-name']";
@@ -15,6 +16,7 @@ export class LoginPage {
     await this.page.fill(this.usernameInput, username);
     await this.page.fill(this.passwordInput, password);
     await this.page.click(this.loginButton);
+    logger.info("Credentials are entered, Clicked on the Login Button");
   }
 
   async isLoggedOut(): Promise<boolean> {

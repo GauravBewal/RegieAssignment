@@ -4,12 +4,10 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: path.resolve(__dirname+'/config', `.env.${process.env.NODE_ENV || 'default'}`) });
 
-// console.log(process.env);
-
 export default defineConfig({
   testDir: './src/tests',
   timeout: 30 * 1000,
-  // retries: 1, // Retry flaky tests once
+  retries: 1, // Retry flaky tests once
   reporter: 'html', // You can add other reporters here as well
   // Configure parallel execution
   workers: process.env.CI ? 2 : undefined,
