@@ -10,9 +10,9 @@ test.describe('Reqres.in Users API Tests', () => {
 
   test.beforeEach(async ({ request }) => {
     usersAPI = new UsersAPI(request, apiBaseURL);
-    console.log("apiBaseURL - ", apiBaseURL);
     logger.info('Setting up UsersAPI before each test.');
   });
+
 
   test('Verify create a new user', async () => {
     logger.info('Starting test: Verify create a new user');
@@ -20,7 +20,6 @@ test.describe('Reqres.in Users API Tests', () => {
     const response = await usersAPI.createUser(newUser);
     expect(response.status()).toBe(201);
     const responseBody = await response.json();
-    apiNewUser.id = responseBody.id;
     expect(responseBody).toHaveProperty('id');
     expect(responseBody).toHaveProperty('createdAt');
     expect(responseBody.name).toBe(newUser.name);
