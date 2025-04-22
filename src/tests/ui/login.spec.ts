@@ -1,4 +1,6 @@
 import { test, expect } from '@utils/test-base'; // Should use the @utils alias
+import {logger} from '@utils/logger';
+import { validCredentials} from '../../../testData/shared_constants';
 
 test.describe('Login Functionality', () => {
   test.beforeEach(async ({ page }) => {
@@ -8,13 +10,15 @@ test.describe('Login Functionality', () => {
     await page.close()
   });
 
-  test('verify user login successfully @smoke', async ({ loginPage, dashboardPage }) => {
-    await loginPage.login('standard_user', 'secret_sauce');
+  test.only('Verify user login successfully with correct credentials @smoke', async ({ loginPage, dashboardPage }) => {
+    logger.info("Login page is visible, doing login through valid credentials");
+    await loginPage.login(validCredentials.username, validCredentials.password);
     const header = await dashboardPage.getDashboardHeader();
     expect(header).toContain('Products');
+    logger.info("[Passed] Login Successfully, Dashboard page is visible");
     await dashboardPage.logout();
     expect(await loginPage.isLoggedOut()).toBe(true);
-
+    logger.info("[Passed] Logout Successfully, Login page is visible");
   });
 
 });

@@ -1,27 +1,29 @@
 import { FullConfig, FullResult, Reporter, Suite, TestCase, TestResult } from '@playwright/test/reporter';
 import * as fs from 'fs';
 import * as path from 'path';
-
+import {logger} from './logger'
 class CustomHTMLReporter implements Reporter {
   outputFile = path.join(__dirname, '../reports/index.html');
   results: { [key: string]: any }[] = [];
 
   onBegin(config: FullConfig, suite: Suite) {
-    console.log(`Starting tests`);
+    logger.info("Starting tests");
   }
 
   onTestEnd(test: TestCase, result: TestResult) {
+    const browserName = test.parent?.project()?.name || 'N/A';
     this.results.push({
       name: test.title,
       status: result.status,
       duration: result.duration,
       error: result.error?.message,
       attachments: result.attachments.map(a => ({ name: a.name, path: a.path })),
+      browser: browserName,
     });
   }
 
   async onEnd(result: FullResult) {
-    console.log(`Finished with status: ${result.status}`);
+    logger.info(`Finished with status: ${result.status}`);
     await this._generateReport();
   }
 
@@ -48,6 +50,7 @@ class CustomHTMLReporter implements Reporter {
             <h3>${test.name}</h3>
             <p>Status: ${test.status}</p>
             <p>Duration: ${test.duration}ms</p>
+            <p class="browser-info">Browser: ${test.browser}</p>
             ${test.error ? `<p class="error">Error: ${test.error}</p>` : ''}
             ${test.attachments.map(attachment => `
               <div class="attachment">
@@ -60,7 +63,7 @@ class CustomHTMLReporter implements Reporter {
       </html>
     `;
     fs.writeFileSync(this.outputFile, html);
-    console.log(`HTML report generated at: ${this.outputFile}`);
+    logger.info(`HTML report generated at: ${this.outputFile}`);
   }
 }
 
