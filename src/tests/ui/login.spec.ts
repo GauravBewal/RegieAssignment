@@ -10,7 +10,7 @@ test.describe('Login Functionality', () => {
     await page.close()
   });
 
-  test.only('Verify user login successfully with correct credentials @smoke', async ({ loginPage, dashboardPage }) => {
+  test('Verify user login successfully with correct credentials @smoke', async ({ loginPage, dashboardPage }) => {
     logger.info("Login page is visible, doing login through valid credentials");
     await loginPage.login(validCredentials.username, validCredentials.password);
     const header = await dashboardPage.getDashboardHeader();
