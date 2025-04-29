@@ -6,6 +6,7 @@ dotenvConfig({ path: path.resolve(__dirname+'/config', `.env.${process.env.NODE_
 
 export default defineConfig({
   testDir: './src/tests',
+  outputDir: '.test-results',
   timeout: 30 * 1000,
   retries: 1, // Retry flaky tests once
   reporter: 'html', // You can add other reporters here as well
