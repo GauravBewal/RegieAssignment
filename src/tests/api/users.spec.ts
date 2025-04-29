@@ -4,6 +4,8 @@ import { logger } from '@utils/logger';
 import { apiNewUser } from '../../../testData/shared_constants';
 
 const apiBaseURL = (process.env.apiBaseURL || '');
+const apiKey = 'reqres-free-v1'; // Directly define the API key here or fetch from env
+
 
 test.describe('Reqres.in Users API Tests', () => {
   let usersAPI: UsersAPI;
@@ -11,6 +13,7 @@ test.describe('Reqres.in Users API Tests', () => {
   test.beforeEach(async ({ request }) => {
     usersAPI = new UsersAPI(request, apiBaseURL);
     logger.info('Setting up UsersAPI before each test.');
+    await usersAPI.setApiKey(apiKey);
   });
 
 
